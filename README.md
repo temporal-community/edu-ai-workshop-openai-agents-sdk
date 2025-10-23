@@ -22,7 +22,7 @@ By the end of this workshop, you'll understand how to:
 
 ## 🚀 Quick Start
 
-### Option 1: GitHub Codespaces (Recommended) ⭐
+### GitHub Codespaces Setup ⭐
 
 1. Click the "Open in GitHub Codespaces" badge above 👆
 2. Wait ~90 seconds for the environment to set up ⏱️
@@ -31,58 +31,12 @@ By the end of this workshop, you'll understand how to:
    cp .env.sample .env
    # Edit .env and add your OPENAI_API_KEY
    ```
-4. Start Temporal server:
-   ```bash
-   make temporal-up
-   ```
+4. Install and start Temporal using the Jupyter notebook:
+   - Open `temporal_installation.ipynb` in VS Code or Jupyter Lab
+   - Run each cell to:
+     - Install the Temporal CLI
+     - Start the Temporal dev server
 5. You're ready to start the exercises! 🎓
-
-#### 📓 Alternative: One-Click Temporal Installation
-
-For easiest Temporal setup, you can also use the Jupyter notebook:
-
-1. Open `temporal_installation.ipynb` in VS Code or Jupyter Lab
-2. Run each cell to:
-   - Install the Temporal CLI
-   - Start the Temporal dev server
-
-This method works in Codespaces, local dev containers, and most Linux environments.
-
-### Option 2: Local Setup 💻
-
-#### 📓 One-Click Temporal Installation (Recommended)
-
-You can use the Jupyter notebook for local setup:
-
-1. Open `temporal_installation.ipynb` in VS Code or Jupyter Lab
-2. Run each cell to:
-   - Install the Temporal CLI
-   - Start the Temporal dev server
-
-#### Manual Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/nadvolod/temporal-openai-agents-sdk.git
-cd temporal-openai-agents-sdk
-
-# Create and activate virtual environment
-python3.11 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-make setup
-
-# Set up environment
-cp .env.sample .env
-# Edit .env and add your OPENAI_API_KEY
-
-# Install Temporal CLI (if not already installed)
-curl -sSf https://temporal.download/cli.sh | sh
-
-# Start Temporal server
-make temporal-up
-```
 
 ## 📚 Workshop Structure
 
