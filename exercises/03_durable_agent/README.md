@@ -18,7 +18,10 @@ Before doing the exercise, you need to:
 - Install necessary dependencies
 - Create your `.env` file and supply your API key
 - Load the environment variables
-- Download and start a local Temporal Service
+- Install and start Temporal using `temporal_installation.ipynb`:
+  1. Open `temporal_installation.ipynb` in VS Code
+  2. Run each cell to install Temporal CLI and start the dev server
+  3. Verify at http://localhost:8233 ✅
 
 ## Architecture
 
@@ -237,7 +240,9 @@ To demonstrate Temporal's automatic retry:
 
 **Error: `Failed to connect to Temporal server`**
 
-- Ensure Temporal is running: `make temporal-up`
+- Ensure Temporal is running using `temporal_installation.ipynb`:
+  1. Open `temporal_installation.ipynb` in VS Code
+  2. Run each cell to install and start Temporal
 - Check server at: http://localhost:8233
 
 **Error: `OPENAI_API_KEY is not set`**
