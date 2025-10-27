@@ -82,12 +82,6 @@ This is a **90-minute workshop**: 30 minutes instruction + 4×15 minute exercise
 - 💡 See how LLMs decide when to use tools
 - 🌐 Call real APIs (National Weather Service)
 
-**Run it:**
-```bash
-# Open the Jupyter notebook in VS Code or Jupyter Lab:
-exercises/01_agent_hello_world/exercise.ipynb
-```
-
 **Time:** 15 minutes ⏱️
 
 ---
@@ -101,20 +95,6 @@ exercises/01_agent_hello_world/exercise.ipynb
 - ⚙️ Learn about activities as units of work
 - 🔍 Observe execution in the Temporal UI
 - 💪 Experience automatic retries
-
-**Prerequisites:**
-```bash
-# Start Temporal server using temporal_installation.ipynb:
-#   1. Open temporal_installation.ipynb in VS Code
-#   2. Run each cell to install and start Temporal
-#   3. Verify at http://localhost:8233
-```
-
-**Run it:**
-```bash
-# Open the Jupyter notebook:
-exercises/02_temporal_hello_world/exercise.ipynb
-```
 
 **Time:** 15 minutes ⏱️
 
@@ -133,12 +113,6 @@ exercises/02_temporal_hello_world/exercise.ipynb
 
 **This is the KEY exercise!** 🎯
 
-**Run it:**
-```bash
-# Open the Jupyter notebook:
-exercises/03_durable_agent/exercise.ipynb
-```
-
 **Time:** 15 minutes ⏱️
 
 ---
@@ -153,36 +127,6 @@ exercises/03_durable_agent/exercise.ipynb
 - 🔀 Use handoff patterns for agent-to-agent transitions
 - 📁 Structure real Temporal applications (workflow, worker, starter files)
 - 🚀 Run production-style workflows with separate worker processes
-
-**This exercise uses separate Python files (not a notebook) to demonstrate production patterns!**
-
-**Prerequisites:**
-```bash
-# Temporal server must be running
-# Use temporal_installation.ipynb to install and start Temporal
-```
-
-**Run it:**
-```bash
-# Terminal 1 - Start the worker
-cd exercises/04_agent_routing
-python worker.py
-
-# Terminal 2 - Execute the workflow
-cd exercises/04_agent_routing
-python starter.py
-```
-
-**Compare with solution:**
-```bash
-# Terminal 1 - Start solution worker
-cd solutions/04_agent_routing
-python worker.py
-
-# Terminal 2 - Run solution
-cd solutions/04_agent_routing
-python starter.py
-```
 
 **Time:** 15 minutes ⏱️
 
