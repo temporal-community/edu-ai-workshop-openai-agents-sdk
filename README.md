@@ -136,7 +136,7 @@ This is a **90-minute workshop**: 30 minutes instruction + 4×15 minute exercise
 
 **Time:** 15 minutes ⏱️
 
-📁 **[Exercise Files](exercises/04_agent_routing/)** | 📗 **[Solution Files](solutions/04_agent_routing/)**
+📁 **[Exercise Files](exercises/04_agent_routing/)** | 📁 **[Solution Files](solutions/04_agent_routing/)**
 
 ## 🛠️ Common Commands
 
