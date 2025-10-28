@@ -2,11 +2,10 @@
 
 import json
 import subprocess
-import tempfile
 from pathlib import Path
 
 
-def test_jupyter_nbconvert_clears_outputs():
+def test_jupyter_nbconvert_clears_outputs(tmp_path):
     """Test that jupyter nbconvert --clear-output removes outputs and execution counts."""
     # Create a test notebook with outputs and execution count
     notebook_content = {
@@ -33,33 +32,28 @@ def test_jupyter_nbconvert_clears_outputs():
     }
 
     # Write to temporary file
-    with tempfile.NamedTemporaryFile(mode="w", suffix=".ipynb", delete=False) as f:
+    notebook_path = tmp_path / "test_notebook.ipynb"
+    with open(notebook_path, "w") as f:
         json.dump(notebook_content, f)
-        temp_path = Path(f.name)
 
-    try:
-        # Verify initial state
-        with open(temp_path) as f:
-            nb = json.load(f)
-            assert nb["cells"][0]["execution_count"] == 1
-            assert len(nb["cells"][0]["outputs"]) > 0
+    # Verify initial state
+    with open(notebook_path) as f:
+        nb = json.load(f)
+        assert nb["cells"][0]["execution_count"] == 1
+        assert len(nb["cells"][0]["outputs"]) > 0
 
-        # Run jupyter nbconvert --clear-output
-        subprocess.run(
-            ["jupyter", "nbconvert", "--clear-output", "--inplace", str(temp_path)],
-            check=True,
-            capture_output=True,
-        )
+    # Run jupyter nbconvert --clear-output
+    subprocess.run(
+        ["jupyter", "nbconvert", "--clear-output", "--inplace", str(notebook_path)],
+        check=True,
+        capture_output=True,
+    )
 
-        # Verify outputs and execution count are cleared
-        with open(temp_path) as f:
-            nb = json.load(f)
-            assert nb["cells"][0]["execution_count"] is None
-            assert nb["cells"][0]["outputs"] == []
-
-    finally:
-        # Clean up
-        temp_path.unlink()
+    # Verify outputs and execution count are cleared
+    with open(notebook_path) as f:
+        nb = json.load(f)
+        assert nb["cells"][0]["execution_count"] is None
+        assert nb["cells"][0]["outputs"] == []
 
 
 def test_pre_commit_config_exists():
