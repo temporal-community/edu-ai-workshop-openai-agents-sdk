@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "temporal-ai-agents-workshop"
 version = "1.0.0"
@@ -17,6 +21,9 @@ dependencies = [
     "nest-asyncio>=1.6.0",
     "pytz>=2024.1",
 ]
+
+[tool.setuptools]
+py-modules = []
 
 [project.optional-dependencies]
 dev = [
