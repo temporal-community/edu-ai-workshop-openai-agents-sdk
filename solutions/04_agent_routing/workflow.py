@@ -100,12 +100,8 @@ class RoutingWorkflow:
                 run_config=config,
             )
 
-            # Get the final response after handoff
-            # Note: current_agent attribute may not be available in all SDK versions
+            # Log that the handoff to the specialist agent has completed
             workflow.logger.info("Handoff completed")
 
-            # Convert result to proper input format for next agent
-            inputs = result.to_input_list()
-
-            # Return the result from the handoff (either the handoff agent's response or triage response)
+            # Return the formatted response from the specialist agent
             return f"Response: {result.final_output}"

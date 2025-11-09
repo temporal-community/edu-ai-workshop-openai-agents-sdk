@@ -60,9 +60,10 @@ async def main():
     print("🚀 Starting Routing Workflow")
     print(f"📋 Workflow ID: {workflow_id}")
 
-    # Start the workflow (non-blocking) and get handle for tracking
-    # Using start_workflow (not execute_workflow) allows us to get the handle first
-    result = await client.execute_workflow(
+    # Start the workflow and get handle for tracking
+    # Using start_workflow (not execute_workflow) returns handle immediately
+    # This allows observing workflow progress before it completes
+    handle = await client.start_workflow(
         RoutingWorkflow.run,  # Workflow method to execute
         "Hi! Tell me a tongue twister.",  # User query parameter passed to workflow
         id=workflow_id,  # Unique workflow ID for tracking in Temporal UI
@@ -70,10 +71,14 @@ async def main():
     )
 
     # Print Temporal UI link for observing workflow execution and agent handoffs
+    print(f"✅ Workflow started: {handle.id}")
     print(
         f"🔗 View in Temporal UI: http://localhost:8233/namespaces/default/workflows/{workflow_id}\n"
     )
     print("⏳ Waiting for agent response...\n")
+
+    # Wait for the workflow to complete and get the result
+    result = await handle.result()
 
     print(f"💬 Agent Response: {result}")
 

@@ -46,14 +46,16 @@ async def main() -> None:
         workflow_id = f"routing-{now.strftime('%a-%b-%d-%I%M%S').lower()}est"
 
     Example workflow execution:
-        result = await client.execute_workflow(
+        handle = await client.start_workflow(
             RoutingWorkflow.run,
             query,
             id=workflow_id,
             task_queue=TASK_QUEUE,
         )
+        result = await handle.result()
 
-    Note: Use execute_workflow() (not start_workflow()) to run and wait for result in one call
+    Note: Use start_workflow() (not execute_workflow()) to get handle first, then await result
+    This pattern allows observing workflow progress before completion
     """
     # TODO: Connect to Temporal client with OpenAIAgentsPlugin
     # Hint: await Client.connect("localhost:7233", plugins=[OpenAIAgentsPlugin()])
@@ -69,12 +71,16 @@ async def main() -> None:
     # Print: 🚀 Starting Routing Workflow
     # Print: 📋 Workflow ID: {workflow_id}
 
-    # TODO: Execute the workflow and get result
-    # Hint: Use client.execute_workflow(RoutingWorkflow.run, query, id=workflow_id, task_queue=TASK_QUEUE)
+    # TODO: Start the workflow and get handle
+    # Hint: handle = await client.start_workflow(RoutingWorkflow.run, query, id=workflow_id, task_queue=TASK_QUEUE)
 
-    # TODO: Print Temporal UI link
+    # TODO: Print workflow started confirmation and Temporal UI link
+    # Print: ✅ Workflow started: {handle.id}
     # Print: 🔗 View in Temporal UI: http://localhost:8233/namespaces/default/workflows/{workflow_id}
     # Print: ⏳ Waiting for agent response...
+
+    # TODO: Wait for workflow to complete and get result
+    # Hint: result = await handle.result()
 
     # TODO: Display the result
     # Print: 💬 Agent Response: {result}
