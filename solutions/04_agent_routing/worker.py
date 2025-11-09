@@ -66,7 +66,7 @@ async def main():
     # Log worker startup for observability
     print(f"🚀 Worker started successfully")
     print(f"📋 Task Queue: {TASK_QUEUE}")
-    print(f"🔄 Workflows: {[w.__name__ for w in [RoutingWorkflow]]}")
+    print(f"🔄 Workflows: {RoutingWorkflow.__name__}")
     print(f"⏳ Polling for tasks... (Press Ctrl+C to stop)\n")
 
     # Start the worker - this blocks indefinitely, processing tasks as they arrive

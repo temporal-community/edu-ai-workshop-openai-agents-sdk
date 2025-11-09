@@ -270,9 +270,9 @@ return Agent(
    print(f"📋 Workflow ID: {workflow_id}")
    ```
 
-5. Execute the workflow and get result:
+5. Start the workflow and get handle:
    ```python
-   result = await client.execute_workflow(
+   handle = await client.start_workflow(
        RoutingWorkflow.run,
        query,
        id=workflow_id,
@@ -280,10 +280,16 @@ return Agent(
    )
    ```
 
-6. Print Temporal UI link and result:
+6. Print confirmation and Temporal UI link:
    ```python
+   print(f"✅ Workflow started: {handle.id}")
    print(f"🔗 View in Temporal UI: http://localhost:8233/namespaces/default/workflows/{workflow_id}\n")
    print("⏳ Waiting for agent response...\n")
+   ```
+
+7. Wait for result and display:
+   ```python
+   result = await handle.result()
    print(f"💬 Agent Response: {result}")
    ```
 
@@ -308,43 +314,56 @@ python starter.py
 ### Step 6: Observe in Temporal UI
 
 1. Open: http://localhost:8233
-2. Find your workflow by ID
+2. Find your workflow by ID (e.g., `routing-wed-oct-16-103045est`)
 3. Observe the agent handoff and execution history
+4. See how the triage agent detected English and routed to the English Agent
 
 ### Step 7: Test Different Languages
 
-Modify `starter.py` to test Spanish or English:
+Modify the query in `starter.py` to test routing to different language agents:
 
 ```python
-query = queries[1]  # Spanish
+# Change the query variable to:
+query = "Bonjour! Raconte-moi une histoire."  # Routes to French Agent
 # or
-query = queries[2]  # English
+query = "¡Hola! Cuéntame un chiste."  # Routes to Spanish Agent
 ```
 
-Run `python starter.py` again and observe routing to different agents!
+Run `python starter.py` again and observe routing to different agents in the Temporal UI!
 
 ## Expected Output
 
-### French Query
+### English Query (Tongue Twister)
 
-**Input:** `"Bonjour! Comment allez-vous aujourd'hui?"`
+**Input:** `"Hi! Tell me a tongue twister."`
 
 **Output:**
 ```
 🚀 Starting Routing Workflow
 📋 Workflow ID: routing-wed-oct-16-103045est
-💬 Query: Bonjour! Comment allez-vous aujourd'hui?
 
 ✅ Workflow started: routing-wed-oct-16-103045est
-🔗 View in Temporal UI: http://localhost:8233/...
+🔗 View in Temporal UI: http://localhost:8233/namespaces/default/workflows/routing-wed-oct-16-103045est
+
 ⏳ Waiting for agent response...
 
-======================================================================
-🤖 Agent Response
-======================================================================
-Bonjour! Je vais très bien, merci de demander!
-Comment puis-je vous aider aujourd'hui?
-======================================================================
+💬 Agent Response: Response: She sells seashells by the seashore. The shells she sells are surely seashells.
+```
+
+### Testing Other Languages
+
+You can modify the query in `starter.py` to test the routing with different languages:
+
+**French Query:**
+```python
+query = "Bonjour! Comment allez-vous aujourd'hui?"
+# Expected: Response in French from French Agent
+```
+
+**Spanish Query:**
+```python
+query = "¡Hola! ¿Cómo estás hoy?"
+# Expected: Response in Spanish from Spanish Agent
 ```
 
 ## Key Concepts
