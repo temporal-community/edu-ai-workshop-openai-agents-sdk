@@ -1,14 +1,6 @@
-# 🤖✨ Temporal + OpenAI Agents SDK Workshop ✨🤖
-
 <div align="center">
 
-### 🚀 Learn to Build **Durable AI Agents** 🚀
-
-*OpenAI Agents SDK + Temporal in 90 Minutes*
-
-**Zero local setup • Hands-on exercises • Production-ready patterns**
-
-🎯 🛡️ 🔄 ⚡ 🎓
+![Workshop Hero Banner](images/hero-banner.svg)
 
 </div>
 
