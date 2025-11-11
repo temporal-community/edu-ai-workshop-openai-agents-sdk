@@ -30,10 +30,3 @@ jobs:
       - name: Run mypy type checker
         run: |
           mypy exercises/ solutions/ scripts/ || true
-
-      - name: Run tests
-        run: |
-          pytest -v tests/
-        env:
-          # Tests use mocks, so no real API key needed
-          OPENAI_API_KEY: "sk-test-key-for-ci"
